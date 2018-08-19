@@ -4,15 +4,15 @@ import checkpy.assertlib as assertlib
 import importlib
 
 
-def before():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("Agg")
-	lib.neutralizeFunction(plt.pause)
+#def before():
+#	import matplotlib.pyplot as plt
+#	plt.switch_backend("Agg")
+#	lib.neutralizeFunction(plt.pause)
 
-def after():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("TkAgg")
-	reload(plt)
+#def after():
+#	import matplotlib.pyplot as plt
+#	plt.switch_backend("TkAgg")
+#	reload(plt)
 
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
@@ -58,6 +58,7 @@ def correctAverageTrump(test):
 			test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
 			return False
 		except:
+                        return True
 			try:	
 				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
 				test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"

@@ -4,15 +4,15 @@ import checkpy.assertlib as assertlib
 import importlib
 
 
-def before():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("Agg")
-	lib.neutralizeFunction(plt.pause)
+#def before():
+#	import matplotlib.pyplot as plt
+#	plt.switch_backend("Agg")
+#	lib.neutralizeFunction(plt.pause)
 
-def after():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("TkAgg")
-	reload(plt)
+#def after():
+#	import matplotlib.pyplot as plt
+#	plt.switch_backend("TkAgg")
+#	reload(plt)
 
 @t.test(0)
 def hassimuleer_groot_aantal_potjes_Monopoly(test):
