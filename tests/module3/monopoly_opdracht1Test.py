@@ -14,6 +14,8 @@ import importlib
 #	plt.switch_backend("TkAgg")
 #	reload(plt)
 
+twoArguments = False
+
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "worp_met_twee_dobbelstenen")
@@ -43,7 +45,7 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 			info = "de functie simuleer_potje_Monopoly is gedefinieerd :) \n  - de functie simuleer_groot_aantal_potjes_Monopoly nog niet"
 		return test_potje and test_groot_aantal_potjes, info
 
-	test.test = testMethod
+	test.test = lambda : testMethod()
 	test.description = lambda : "definieert de functie simuleer_potje_Monopoly en simuleer_groot_aantal_potjes_Monopoly"
 	test.timeout = lambda : 60
 
@@ -53,33 +55,33 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 def correctAverageTrump(test):
 
 	def try_run():
-		# try:
-		# 	#Trump test
-		# 	testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
-		# 	#test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
-		# 	#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
-		# 	#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-		# 	return testInput
-		#
-		# except:
-		# 	pass
-		#
-		# try:
-		# 	#Startingmoney test
-		# 	testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000)
-		# 	#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
-		# 	#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-		# 	return testInput
-		#
-		# except:
-		# 	#total fail
-		# 	#test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
-		# 	return False
-		return True
+		try:
+			#Trump test
+			test.description = lambda : "The function takes one argument, now try with 2."
+			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000)
+			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
+				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			return testInput
+		except:
+			pass
+		
+		try:
+			#Startingmoney test
+			test.description = lambda : "Good job! Both arguments."
+			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000, 1000000)
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
+				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			twoArguments = True
+			return testInput
+		
+		except:
+			#total fail
+			return 0
 
-	test.fail = lambda info : "de correcte waarde is ongeveer 147"
+	test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
-	test.description = lambda : "Monopoly werkt in Trump-Mode"
+	test.description = lambda : "---"
 	test.timeout = lambda : 120
 
 
@@ -88,12 +90,15 @@ def correctAverageTrump(test):
 def correctAverageStartgeld(test):
 
 	def try_run():
-		try:
-			return lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500)
-		except:
-			return False
+		if not twoArguments:
+			return 0
 
-	test.fail = lambda info : "de correcte waarde is ongeveer 187"
+		else:
+			val = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500)
+			return val
+
+	test.fail = lambda info : "Does the function accept two arguments? Answer should be ~187."
 	test.test = lambda : assertlib.between(try_run(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
 	test.timeout = lambda : 60
+
