@@ -54,7 +54,7 @@ def correctAverageTrump(test):
 
 	def try_run():
 		Trumpmode = True
-		try:
+		try
 			#Trump test
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
 			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
