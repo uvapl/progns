@@ -27,7 +27,7 @@ def correctDice(test):
 	test.test = lambda : assertlib.between(lib.getFunction("worp_met_twee_dobbelstenen", _fileName)(), 2, 12)
 	test.description = lambda : "returnt een correcte waarde voor een worp van twee dobbelstenen"
 	test.timeout = lambda : 60
-	
+
 
 @t.passed(correctDice)
 @t.test(20)
@@ -53,31 +53,29 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 def correctAverageTrump(test):
 
 	def try_run():
-		Trumpmode = True
-		try:
-			#Trump test
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
-			#test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
-			#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
-			#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			return testInput
-
-		except:
-			pass
-
-		try:
-			#Startingmoney test
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000)
-			#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
-			#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			return testInput
-
-		except:
-			#total fail
-			#test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
-			return False
-
-
+		# try:
+		# 	#Trump test
+		# 	testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
+		# 	#test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
+		# 	#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
+		# 	#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+		# 	return testInput
+		#
+		# except:
+		# 	pass
+		#
+		# try:
+		# 	#Startingmoney test
+		# 	testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000)
+		# 	#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
+		# 	#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+		# 	return testInput
+		#
+		# except:
+		# 	#total fail
+		# 	#test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
+		# 	return False
+		return True
 
 	test.fail = lambda info : "de correcte waarde is ongeveer 147"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
@@ -99,8 +97,3 @@ def correctAverageStartgeld(test):
 	test.test = lambda : assertlib.between(try_run(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
 	test.timeout = lambda : 60
-
-
-
-
-
