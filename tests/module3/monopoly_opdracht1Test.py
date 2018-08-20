@@ -54,12 +54,12 @@ def correctAverageTrump(test):
 
 	def try_run():
 		Trumpmode = True
-		try
+		try:
 			#Trump test
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
-			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			#test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
+			#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
+			#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 			return testInput
 
 		except:
@@ -68,13 +68,13 @@ def correctAverageTrump(test):
 		try:
 			#Startingmoney test
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000)
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			#if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
+			#	test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 			return testInput
 
 		except:
 			#total fail
-			test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
+			#test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
 			return False
 
 
