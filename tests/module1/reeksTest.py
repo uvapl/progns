@@ -29,4 +29,5 @@ def correctBarriers(test):
 @t.test(10)
 def correctDistance(test):
 	test.test = lambda : assertlib.numberOnLine(35, lib.getLine(lib.outputOf(_fileName), 1))
+	test.fail = lambda info : "print de correcte lengte van de reeks op de tweede regel"
 	test.description = lambda : "geeft de correcte lengte van de reeks"
