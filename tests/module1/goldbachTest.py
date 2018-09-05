@@ -7,7 +7,7 @@ import sys
 
 curPath = os.path.realpath(__file__)
 fileName = os.path.basename(__file__)
-folderName = "getaltheorie"
+folderName = "module1"
 sys.path.append(curPath[:-(len(fileName) + len(folderName) + 1)])
 
 from notAllowedCode import *
