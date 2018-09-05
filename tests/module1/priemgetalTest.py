@@ -2,8 +2,22 @@ import checkpy.tests as t
 import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 
+import os
+import sys
+
+curPath = os.path.realpath(__file__)
+fileName = os.path.basename(__file__)
+folderName = "getaltheorie"
+sys.path.append(curPath[:-(len(fileName) + len(folderName) + 1)])
+
+from notAllowedCode import *
+
 @t.test(0)
 def exact1(test):
+
+	notAllowed = {"list": "[", "break": "break"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	test.test = lambda : assertlib.numberOnLine(2, lib.getLine(lib.outputOf(_fileName, stdinArgs=[1]), 0))
 	test.description = lambda : "vind het 1ste priemgetal: 2"
 

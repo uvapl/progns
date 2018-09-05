@@ -2,6 +2,16 @@ import checkpy.tests as t
 import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 
+import os
+import sys
+
+curPath = os.path.realpath(__file__)
+fileName = os.path.basename(__file__)
+folderName = "getaltheorie"
+sys.path.append(curPath[:-(len(fileName) + len(folderName) + 1)])
+
+from notAllowedCode import *
+
 @t.test(0)
 def allEvenNumbersInOutput(test):
 	def testMethod():
@@ -13,6 +23,10 @@ def allEvenNumbersInOutput(test):
 			evenNumbers -= set(lib.getPositiveIntegersFromString(line))
 		testResult = len(evenNumbers) == 0
 		return testResult
+
+	notAllowed = {"break": "break"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	test.test = testMethod
 
 	test.description = lambda : "alle even getallen tot 1000 staan in de output"
