@@ -5,10 +5,8 @@ import checkpy.assertlib as assertlib
 import os
 import sys
 
-curPath = os.path.realpath(__file__)
-fileName = os.path.basename(__file__)
-folderName = "module1"
-sys.path.append(curPath[:-(len(fileName) + len(folderName) + 1)])
+parpath = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
+sys.path.append(parpath)
 
 from notAllowedCode import *
 
