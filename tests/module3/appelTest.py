@@ -3,6 +3,14 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import importlib
 
+import os
+import sys
+
+parpath = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
+sys.path.append(parpath)
+
+from notAllowedCode import *
+
 def before():
 	try:
 		import matplotlib
@@ -24,6 +32,10 @@ def after():
 
 @t.test(0)
 def containsRequiredFunctionDefinitions(test):
+
+	notAllowed = {"break": "break"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "appel")
 	test.description = lambda : "definieert de functie `appel()`"
 
