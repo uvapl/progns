@@ -3,6 +3,13 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import importlib
 
+import os
+import sys
+
+parpath = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
+sys.path.append(parpath)
+
+from notAllowedCode import *
 
 #def before():
 #	import matplotlib.pyplot as plt
@@ -14,10 +21,12 @@ import importlib
 #	plt.switch_backend("TkAgg")
 #	reload(plt)
 
-twoArguments = False
-
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
+
+	notAllowed = {"break": "break"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "worp_met_twee_dobbelstenen")
 	test.description = lambda : "definieert de functie worp_met_twee_dobbelstenen"
 	test.timeout = lambda : 60
@@ -45,6 +54,8 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 			info = "de functie simuleer_potje_Monopoly is gedefinieerd :) \n  - de functie simuleer_groot_aantal_potjes_Monopoly nog niet"
 		return test_potje and test_groot_aantal_potjes, info
 
+
+
 	test.test = lambda : testMethod()
 	test.description = lambda : "definieert de functie simuleer_potje_Monopoly en simuleer_groot_aantal_potjes_Monopoly"
 	test.timeout = lambda : 60
@@ -54,34 +65,32 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 @t.test(30)
 def correctAverageTrump(test):
 
-	def try_run():
-		try:
-			#Trump test
-			test.description = lambda : "The function takes one argument, now try with 2."
+	def testMethod():
+		nArguments = len(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName).arguments)
+
+		# Trump
+		if nArguments == 1:
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000)
 			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
 			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
 				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			return testInput
-		except:
-			pass
-		
-		try:
-			#Startingmoney test
-			test.description = lambda : "Good job! Both arguments."
+
+		# Stargeld, 1 speler
+		elif nArguments == 2:
+			twoArguments = True
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000, 1000000)
 			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
 				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			twoArguments = True
-			return testInput
-		
-		except:
-			#total fail
-			return 0
 
-	test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
-	test.test = lambda : assertlib.between(try_run(), 145, 149)
-	test.description = lambda : "---"
+		else:
+			testInput = False
+			test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly bij Trumpmode 1 argument heeft en bij starggeld 2 argumenten"
+
+		return testInput
+
+	test.test = lambda : assertlib.between(testMethod(), 145, 149)
+	test.test = lambda : testMethod()
+	test.description = lambda : "Monop werkt voor Trumpmode"
 	test.timeout = lambda : 120
 
 
@@ -89,16 +98,17 @@ def correctAverageTrump(test):
 @t.test(40)
 def correctAverageStartgeld(test):
 
-	def try_run():
-		if not twoArguments:
+	def testMethod():
+		nArguments = len(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName).arguments)
+
+		if nArguments == 2:
+			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500)
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500), None):
+				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			return testInput
+		else:
 			return 0
 
-		else:
-			val = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500)
-			return val
-
-	test.fail = lambda info : "Does the function accept two arguments? Answer should be ~187."
-	test.test = lambda : assertlib.between(try_run(), 184, 189)
+	test.test = lambda : assertlib.between(testMethod(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
 	test.timeout = lambda : 60
-
