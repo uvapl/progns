@@ -23,21 +23,21 @@ def after():
 		pass
 
 
-@t.test(0)
-def hasSomRandomGetallen(test):
-	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "SomRandomGetallen")
-	test.description = lambda : "definieert de functie SomRandomGetallen"
+# @t.test(0)
+# def hasSomRandomGetallen(test):
+#     test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "SomRandomGetallen")
+#     test.description = lambda : "definieert de functie SomRandomGetallen"
+#
+#
+# @t.passed(hasSomRandomGetallen)
+# @t.test(10)
+# def correctBelow40(test):
+#     tsts = ['40', 'veertig', 'forty']
+#     test.test = lambda : (assertlib.numberOnLine(5, lib.getLine(lib.outputOf(_fileName), 0), deviation = 5) or assertlib.numberOnLine(0.05, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05)) and sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])
+#     test.fail = lambda info : "zorg dat je de waarde in een volledige zin zet, op de eerste regel"
+#     test.description = lambda : "print op de eerste regel hoe vaak de som minder dan 40 is"
 
-
-@t.passed(hasSomRandomGetallen)
-@t.test(10)
-def correctBelow40(test):
-	tsts = ['40', 'veertig', 'forty']
-	test.test = lambda : (assertlib.numberOnLine(5, lib.getLine(lib.outputOf(_fileName), 0), deviation = 5) or assertlib.numberOnLine(0.05, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05)) and sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])
-	test.fail = lambda info : "zorg dat je de waarde in een volledige zin zet, op de eerste regel"
-	test.description = lambda : "print op de eerste regel hoe vaak de som minder dan 40 is"
-
-@t.passed(hasSomRandomGetallen)
+# @t.passed(hasSomRandomGetallen)
 @t.test(20)
 def correctAbove60(test):
 	tsts = ['60', 'zestig', 'sixty']
