@@ -11,15 +11,15 @@ sys.path.append(parpath)
 
 from notAllowedCode import *
 
-#def before():
-#	import matplotlib.pyplot as plt
-#	plt.switch_backend("Agg")
-#	lib.neutralizeFunction(plt.pause)
+def before():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("Agg")
+	lib.neutralizeFunction(plt.pause)
 
-#def after():
-#	import matplotlib.pyplot as plt
-#	plt.switch_backend("TkAgg")
-#	reload(plt)
+def after():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("TkAgg")
+	reload(plt)
 
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
