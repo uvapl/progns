@@ -5,6 +5,14 @@ import importlib
 import helpers
 import re
 
+import os
+import sys
+
+parpath = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
+sys.path.append(parpath)
+
+from notAllowedCode import *
+
 def sandbox():
 	lib.require("DeBiltTempMax.txt", "http://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMax.txt")
 	lib.require("DeBiltTempMin.txt", "http://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMin.txt")
@@ -32,6 +40,10 @@ def after():
 
 @t.test(10)
 def correctHighestTemp(test):
+
+	notAllowed = {"sum": "sum(", "break": "break", "classes": "class"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	def testMethod():
 		correctAnswer = "36.8"
 		if helpers.isHardcodedIn(correctAnswer, test.fileName):
