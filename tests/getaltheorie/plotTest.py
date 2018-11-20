@@ -28,6 +28,9 @@ def showsGraph(test):
 
 @t.test(1)
 def givesMin(test):
+	notAllowed = {"min": "min"}
+	notAllowedCode(test, lib.source(_fileName), notAllowed)
+
 	test.test = lambda : assertlib.numberOnLine(0.37, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05) and assertlib.numberOnLine(0.69, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05)
 	test.fail = lambda info : "Zorg dat het juiste minimum op de eerste regel geprint wordt"
 	test.description = lambda : "print het juiste minimum van de functies"
