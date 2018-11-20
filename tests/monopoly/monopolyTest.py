@@ -12,14 +12,15 @@ sys.path.append(parpath)
 from notAllowedCode import *
 
 def before():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("Agg")
-	lib.neutralizeFunction(plt.pause)
+    import matplotlib.pyplot as plt
+    plt.switch_backend("Agg")
+    lib.neutralizeFunction(plt.pause)
+    # lib.neutralizeFunction(matplotlib.use)
 
 def after():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("TkAgg")
-	reload(plt)
+    import matplotlib.pyplot as plt
+    plt.switch_backend("TkAgg")
+    importlib.reload(plt)
 
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
@@ -37,7 +38,7 @@ def hasworp_met_twee_dobbelstenen(test):
 def correctDice(test):
 	test.test = lambda : assertlib.between(lib.getFunction("worp_met_twee_dobbelstenen", _fileName)(), 2, 12)
 	test.description = lambda : "returnt een correcte waarde voor een worp van twee dobbelstenen"
-	test.timeout = lambda : 60
+	test.timeout = lambda : 120
 
 
 @t.passed(correctDice)

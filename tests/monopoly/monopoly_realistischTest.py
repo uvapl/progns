@@ -13,14 +13,15 @@ from notAllowedCode import *
 
 
 def before():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("Agg")
-	lib.neutralizeFunction(plt.pause)
+    import matplotlib.pyplot as plt
+    plt.switch_backend("Agg")
+    lib.neutralizeFunction(plt.pause)
+    lib.neutralizeFunction(plt.show)
 
 def after():
-	import matplotlib.pyplot as plt
-	plt.switch_backend("TkAgg")
-	reload(plt)
+    import matplotlib.pyplot as plt
+    plt.switch_backend("TkAgg")
+    importlib.reload(plt)
 
 @t.test(0)
 def hassimuleer_groot_aantal_potjes_Monopoly(test):
@@ -65,7 +66,7 @@ def correctAverageDiv(test):
 
 @t.passed(correctAverageDiv)
 @t.test(20)
-def correctAverageDiv(test):
+def correctAverageDiv2(test):
 	def testMethod():
 		def findline(outputOf):
 			tsts = ['startgeld', 'evenveel', 'straten']

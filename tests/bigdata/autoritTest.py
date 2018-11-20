@@ -3,14 +3,6 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import importlib
 
-import os
-import sys
-
-parpath = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
-sys.path.append(parpath)
-
-from notAllowedCode import *
-
 def sandbox():
 	lib.require("AutoRitData.csv", "http://www.nikhef.nl/~ivov/Python/SensorData/AutoRitData.csv")
 
@@ -35,10 +27,6 @@ def after():
 
 @t.test(0)
 def correctDistance(test):
-
-	notAllowed = {"sum": "sum(", "break": "break", "classes": "class"}
-	notAllowedCode(test, lib.source(_fileName), notAllowed)
-
 	def testMethod():
 		output = lib.outputOf(
 			test.fileName,
