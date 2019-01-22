@@ -59,7 +59,7 @@ def correctFunc3(test):
 		montecarlo = lib.getFunction("montecarlo", _fileName)
 		sin_squared = lib.documentFunction(lambda x : math.sin(x**2), "f(x) = sin(x**2)")
 		outcome = montecarlo(sin_squared, 0, -1, math.pi, 1)
-		assertlib.between(outcome, 0.75, 0.79)
+		return assertlib.between(outcome, 0.75, 0.79)
 
 	test.test = testMethod
 	test.description = lambda : "montecarlo werkt correct voor een functie die onder de x-as komt"
