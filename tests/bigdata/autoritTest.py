@@ -39,7 +39,7 @@ def correctDistance(test):
 	test.test = testMethod
 	test.description = lambda : "print de afgelegde afstand"
 
-# @t.test(1)
-# def showsGraph(test):
-# 	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "savefig") or assertlib.fileContainsFunctionCalls(_fileName, "show")
-# 	test.description = lambda : "slaat een grafiek op, of laat een grafiek zien"
+@t.test(1)
+def showsGraph(test):
+	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "savefig") or assertlib.fileContainsFunctionCalls(_fileName, "show")
+	test.description = lambda : "slaat een grafiek op, of laat een grafiek zien"
