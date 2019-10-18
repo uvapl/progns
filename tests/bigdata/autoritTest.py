@@ -13,6 +13,8 @@ def before():
 		import matplotlib.pyplot as plt
 		plt.switch_backend("Agg")
 		lib.neutralizeFunction(plt.pause)
+		lib.neutralizeFunction(plt.subplot)
+		lib.neutralizeFunction(plt.show)
 	except ImportError:
 		pass
 
