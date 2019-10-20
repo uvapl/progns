@@ -8,6 +8,8 @@ def sandbox():
 
 def before():
 	try:
+		import warnings
+		warnings.filterwarnings("ignore")
 		import matplotlib
 		matplotlib.use("Agg")
 		import matplotlib.pyplot as plt
