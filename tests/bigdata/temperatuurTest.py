@@ -19,14 +19,16 @@ def before():
 		lib.neutralizeFunction(plt.pause)
 		lib.neutralizeFunction(plt.subplot)
 		lib.neutralizeFunction(plt.show)
-		lib.neutralizeFunction(matplotlib.use)
+		# lib.neutralizeFunction(matplotlib.use)
 	except ImportError:
 		pass
 
 def after():
 	try:
+		# import matplotlib
 		import matplotlib.pyplot as plt
-		plt.switch_backend("TkAgg")
+		# plt.switch_backend("TkAgg")
+		# importlib.reload(matplotlib)
 		importlib.reload(plt)
 	except ImportError:
 		pass
