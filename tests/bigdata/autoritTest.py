@@ -15,6 +15,7 @@ def before():
 		lib.neutralizeFunction(plt.pause)
 		lib.neutralizeFunction(plt.subplot)
 		lib.neutralizeFunction(plt.show)
+		lib.neutralizeFunction(matplotlib.use)
 	except ImportError:
 		pass
 
