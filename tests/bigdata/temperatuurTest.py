@@ -16,7 +16,7 @@ def before():
 		warnings.filterwarnings("ignore")
 		import matplotlib
 		matplotlib.use("Agg")
-		matplotlib.use = lambda x: x
+		matplotlib.use = lambda x, warn=None, force=None: x
 		import matplotlib.pyplot as plt
 		plt.switch_backend("Agg")
 		lib.neutralizeFunction(plt.pause)
