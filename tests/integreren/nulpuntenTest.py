@@ -3,6 +3,9 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import importlib
 
+import warnings
+warnings.filterwarnings("ignore")
+
 def before():
 	try:
 		import matplotlib
