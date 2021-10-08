@@ -90,7 +90,7 @@ def correctAverageTrump(test):
 		return testInput
 
 	test.test = lambda : assertlib.between(testMethod(), 145, 149)
-	test.test = lambda : testMethod()
+    # test.test = lambda : testMethod()
 	test.description = lambda : "Monopoly werkt voor Trumpmode"
 	test.timeout = lambda : 120
 
