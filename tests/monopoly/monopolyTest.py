@@ -72,15 +72,15 @@ def correctAverageTrump(test):
 		# Trump
 		if nArguments == 1:
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(1000)
-			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000), None):
+			test.success = lambda info : "De code werkt correct zonder startgeld"
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(100), None):
 				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 
 		# Stargeld, 1 speler
 		elif nArguments == 2:
 			twoArguments = True
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(1000, 1000000)
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 1000000), None):
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 100), None):
 				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 
 		else:
