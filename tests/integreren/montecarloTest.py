@@ -14,6 +14,7 @@ def before():
 		import matplotlib.pyplot as plt
 		plt.switch_backend("Agg")
 		lib.neutralizeFunction(plt.pause)
+		lib.neutralizeFunction(matplotlib.use)
 	except ImportError:
 		pass
 
