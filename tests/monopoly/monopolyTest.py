@@ -116,7 +116,7 @@ def correctAverageTrump(test):
 			testInput = False
 			test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly bij Trumpmode 1 argument heeft en bij startgeld 2 argumenten"
 
-		if 145 < testInput < 149:
+		if 144 < testInput < 150:
 			return True
 		else:
 			test.fail = lambda info: f"{testInput}"
