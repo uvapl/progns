@@ -47,8 +47,6 @@ def hasworp_met_twee_dobbelstenen(test):
                 break
             else:
                 f.write(line)
-            # elif in_def:
-            #     in_def = False
 
     _fileName = tempfile
 
