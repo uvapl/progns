@@ -34,11 +34,21 @@ def hasworp_met_twee_dobbelstenen(test):
         file_contents = f.readlines()
         
     with open(tempfile, 'w') as f:
-        in_defs = False
+        in_def = False
+        after_def = False
         for line in file_contents:
-            if (line.startswith('def') or line.startswith('import') or
-                line.startswith(' ') or line.startswith("\t") or line.strip() == ''):
+            if line.startswith('import') or line.strip() == '':
                 f.write(line)
+            elif not in_def:
+                if line.startswith('def '):
+                    in_def = True
+                f.write(line)
+            elif not (line.startswith(' ') or line.startswith("\t") or line.startswith("def ") or line.startswith("#")):
+                break
+            else:
+                f.write(line)
+            # elif in_def:
+            #     in_def = False
 
     _fileName = tempfile
 
