@@ -26,6 +26,25 @@ def after():
 @t.test(0)
 def hassimuleer_groot_aantal_potjes_Monopoly(test):
 
+	# v---- Filter global code from source file -----
+
+	global _fileName
+
+	with open(_fileName, 'r') as f:
+		tempfile = f"_{_fileName}.tmp"
+		file_contents = f.readlines()
+		
+	with open(tempfile, 'w') as f:
+		in_defs = False
+		for line in file_contents:
+			if (line.startswith('def') or line.startswith('import') or
+				line.startswith(' ') or line.startswith("\t") or line.strip() == ''):
+				f.write(line)
+
+	_fileName = tempfile
+
+	# ^---- Filter global code from source file -----
+
 	def testMethod():
 		correctFunction = False
 

@@ -25,12 +25,31 @@ def after():
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
 
-	notAllowed = {"break": "break"}
-	notAllowedCode(test, lib.source(_fileName), notAllowed)
+    # v---- Filter global code from source file -----
 
-	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "worp_met_twee_dobbelstenen")
-	test.description = lambda : "definieert de functie worp_met_twee_dobbelstenen"
-	test.timeout = lambda : 60
+    global _fileName
+
+    with open(_fileName, 'r') as f:
+        tempfile = f"_{_fileName}.tmp"
+        file_contents = f.readlines()
+        
+    with open(tempfile, 'w') as f:
+        in_defs = False
+        for line in file_contents:
+            if (line.startswith('def') or line.startswith('import') or
+                line.startswith(' ') or line.startswith("\t") or line.strip() == ''):
+                f.write(line)
+
+    _fileName = tempfile
+
+    # ^---- Filter global code from source file -----
+
+    notAllowed = {"break": "break"}
+    notAllowedCode(test, lib.source(_fileName), notAllowed)
+
+    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "worp_met_twee_dobbelstenen")
+    test.description = lambda : "definieert de functie worp_met_twee_dobbelstenen"
+    test.timeout = lambda : 60
 
 
 @t.passed(hasworp_met_twee_dobbelstenen)
@@ -74,23 +93,27 @@ def correctAverageTrump(test):
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(1000)
 			test.success = lambda info : "De code werkt correct zonder startgeld"
 			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(100), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+				test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 
 		# Stargeld, 1 speler
 		elif nArguments == 2:
 			twoArguments = True
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(1000, 1000000)
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 100), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(100, 100), None):
+				test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 
 		else:
 			testInput = False
-			test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly bij Trumpmode 1 argument heeft en bij starggeld 2 argumenten"
+			test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly bij Trumpmode 1 argument heeft en bij startgeld 2 argumenten"
 
-		return testInput
+		if 145 < testInput < 149:
+			return True
+		else:
+			test.fail = lambda info: f"{testInput}"
+			return False
 
-	test.test = lambda : assertlib.between(testMethod(), 145, 149)
-    # test.test = lambda : testMethod()
+	# test.test = lambda : testMethod(), 145, 149)
+	test.test = lambda : testMethod()
 	test.description = lambda : "Monopoly werkt voor Trumpmode"
 	test.timeout = lambda : 120
 
@@ -103,8 +126,8 @@ def correctAverageStartgeld(test):
 		nArguments = len(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName).arguments)
 
 		if nArguments == 2:
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 1500)
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 1500), None):
+			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(5000, 1500)
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10, 1500), None):
 				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 			return testInput
 		else:
