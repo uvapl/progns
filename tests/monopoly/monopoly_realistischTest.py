@@ -28,7 +28,10 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 
 	# v---- Filter global code from source file -----
 
+	global _originalFileName
 	global _fileName
+
+	_originalFileName = _fileName
 
 	with open(_fileName, 'r') as f:
 		tempfile = f"_{_fileName}.tmp"
@@ -68,7 +71,7 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 @t.test(10)
 def correctAverageDiv(test):
 	def testMethod():
-		outcome = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(10000, 1500, 1500)
+		outcome = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(2000, 1500, 1500)
 		if assertlib.sameType(outcome, None):
 			info = "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
 		elif assertlib.between(outcome, -99999999, 0):
@@ -94,7 +97,7 @@ def correctAverageDiv2(test):
 					return line
 			return ""
 
-		line = findline(lib.outputOf(_fileName))
+		line = findline(lib.outputOf(_originalFileName))
 
 		info = ""
 		if assertlib.numberOnLine(75, line):
