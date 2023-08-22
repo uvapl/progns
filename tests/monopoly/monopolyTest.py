@@ -98,14 +98,14 @@ def correctAverageTrump(test):
 	def testMethod():
 		nArguments = len(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName).arguments)
 
-		# Trump
+		# Trump mode
 		if nArguments == 1:
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(1000)
+			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(2000)
 			test.success = lambda info : "De code werkt correct zonder startgeld"
 			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(100), None):
 				test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 
-		# Stargeld, 1 speler
+		# Startgeld, 1 speler
 		elif nArguments == 2:
 			twoArguments = True
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(2000, 1000000)
@@ -114,7 +114,7 @@ def correctAverageTrump(test):
 
 		else:
 			testInput = False
-			test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly bij Trumpmode 1 argument heeft en bij startgeld 2 argumenten"
+			test.fail = lambda info : "Zorg ervoor dat de functie simuleer_groot_aantal_potjes_monopoly bij Trump-mode 1 argument heeft en bij startgeld 2 argumenten"
 
 		if 144 < testInput < 150:
 			return True
@@ -124,7 +124,7 @@ def correctAverageTrump(test):
 
 	# test.test = lambda : testMethod(), 145, 149)
 	test.test = lambda : testMethod()
-	test.description = lambda : "Monopoly werkt voor Trumpmode"
+	test.description = lambda : "Monopoly werkt voor Trump-mode"
 	test.timeout = lambda : 120
 
 

@@ -22,7 +22,7 @@ def correctBarriers(test):
 	notAllowedCode(test, lib.source(_fileName), notAllowed)
 
 	test.description = lambda : "geeft het correcte beginpunt en eindpunt van de reeks"
-	test.fail = lambda info : "let op: de priemgetallen horen niet bij de reeks!"
+	test.fail = lambda info : "let op: de priemgetallen zelf horen niet bij de reeks!"
 	test.timeout = lambda : 30
 
 @t.test(10)

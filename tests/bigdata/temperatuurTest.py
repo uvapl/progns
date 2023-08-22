@@ -42,7 +42,7 @@ def after():
 def correctHighestTemp(test):
 	def testMethod():
 
-		#Max temp
+		# Max temp
 		correctAnswerMax = [37.5, 25, 2019]
 		if helpers.isHardcodedIn(correctAnswerMax[0], test.fileName):
 			test.success = lambda info : "let op: deze output is hardcoded. {} staat in de source code!".format(correctAnswer)
@@ -50,17 +50,17 @@ def correctHighestTemp(test):
 		line1 = lib.getLine(lib.outputOf(_fileName), 0)
 		numbersMax = lib.getNumbersFromString(line1)
 
-		correctMonthMax = any([assertlib.contains(line1.lower(), month) for month in ["juli", "june", "jun"]])
+		correctMonthMax = any([assertlib.contains(line1.lower(), month) for month in ["juli", "July", "jul", "Jul"]])
 
-		#Min temp
+		# Min temp
 		correctAnswerMin = [-24.7, 27, 1942]
 
 		line2 = lib.getLine(lib.outputOf(_fileName), 1)
 		numbersMin = lib.getNumbersFromString(line2)
 
-		correctMonthMin = any([assertlib.contains(line2.lower(), month) for month in ["januari", "january", "jan"]])
+		correctMonthMin = any([assertlib.contains(line2.lower(), month) for month in ["januari", "January", "jan", "Jan"]])
 	
-		#Total check
+		# Total check
 		if sum(1 for n in numbersMax if n in correctAnswerMax) != 3 or not correctMonthMax or sum(1 for n in numbersMin if n in correctAnswerMin) != 3 or not correctMonthMin:
 			return False
 		return True
@@ -73,7 +73,7 @@ def correctHighestTemp(test):
 def correctIjstijd(test):
 	def testMethod():
 		if helpers.isHardcodedIn(1947, test.fileName):
-			test.success = lambda info : "let op: deze output is hardcoded. 1947 staat in de source code!"
+			test.success = lambda info : "let op: deze output is gehardcode. 1947 staat in de source code!"
 
 		line1 = lib.getLine(lib.outputOf(_fileName), 2)
 
@@ -81,7 +81,7 @@ def correctIjstijd(test):
 
 		line2 = lib.getLine(lib.outputOf(_fileName), 3)
 
-		correctMonth = any([assertlib.contains(line2.lower(), month) for month in ["februari", "february", "feb"]])
+		correctMonth = any([assertlib.contains(line2.lower(), month) for month in ["februari", "February", "feb", "Feb"]])
 
 		correctAnswer = [24, 1947]
 		numbers = lib.getNumbersFromString(line2)
@@ -90,7 +90,7 @@ def correctIjstijd(test):
 		return correctDuration and correctMonth and correctDayAndYear
 
 	test.test = testMethod
-	test.description = lambda : "print correcte duur en datum van de kleine ijstijd op 2 apparte regels"
+	test.description = lambda : "print correcte duur en datum van de kleine ijstijd op twee aparte regels"
 
 @t.passed(correctIjstijd)
 @t.test(21)
