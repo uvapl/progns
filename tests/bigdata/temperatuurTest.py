@@ -75,22 +75,20 @@ def correctIjstijd(test):
 		if helpers.isHardcodedIn(1947, test.fileName):
 			test.success = lambda info : "let op: deze output is gehardcode. 1947 staat in de source code!"
 
-		line1 = lib.getLine(lib.outputOf(_fileName), 2)
+		correctAnswerIceAge = [21, 24, 1947]
 
-		correctDuration = assertlib.contains(line1, '21')
+		line3 = lib.getLine(lib.outputOf(_fileName), 2)
+		numbersIceAge = lib.getNumbersFromString(line3)
 
-		line2 = lib.getLine(lib.outputOf(_fileName), 3)
-
-		correctMonth = any([assertlib.contains(line2.lower(), month) for month in ["februari", "February", "feb", "Feb"]])
-
-		correctAnswer = [24, 1947]
-		numbers = lib.getNumbersFromString(line2)
-		correctDayAndYear = sum(1 for n in numbers if n in correctAnswer) == 2
-		
-		return correctDuration and correctMonth and correctDayAndYear
+		correctMonthIceAge = any([assertlib.contains(line3.lower(), month) for month in ["februari", "February", "feb", "Feb"]])
+	
+		# Total check
+		if sum(1 for n in numbersIceAge if n in correctAnswerIceAge) != 3 or not correctMonthIceAge:
+			return False
+		return True
 
 	test.test = testMethod
-	test.description = lambda : "print correcte duur en datum van de kleine ijstijd op twee aparte regels"
+	test.description = lambda : "print correcte duur en einddatum (dag, maand en jaar) van de kleine ijstijd"
 
 @t.passed(correctIjstijd)
 @t.test(21)
