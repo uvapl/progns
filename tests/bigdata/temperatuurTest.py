@@ -45,7 +45,7 @@ def correctHighestTemp(test):
 		# Max temp
 		correctAnswerMax = [37.5, 25, 2019]
 		if helpers.isHardcodedIn(correctAnswerMax[0], test.fileName):
-			test.success = lambda info : "let op: deze output is hardcoded. {} staat in de source code!".format(correctAnswer)
+			test.success = lambda info : "let op: deze output is hardcoded. {} staat in de source code!".format(correctAnswerMax)
 
 		line1 = lib.getLine(lib.outputOf(_fileName), 0)
 		numbersMax = lib.getNumbersFromString(line1)
