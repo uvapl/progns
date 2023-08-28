@@ -18,20 +18,20 @@ def has_priem_of_niet(test):
 	notAllowed = {"list": "[", "break": "break"}
 	notAllowedCode(test, lib.source(_fileName), notAllowed)
 
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "priem_of_niet")
-    test.description = lambda : "definieert de functie priem_of_niet()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "priem_of_niet")
+	test.description = lambda : "definieert de functie priem_of_niet()"
 
 
 @t.test(10)
 def has_alle_priem_tot(test):
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "alle_priem_tot")
-    test.description = lambda : "definieert de functie alle_priem_tot()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "alle_priem_tot")
+	test.description = lambda : "definieert de functie alle_priem_tot()"
 
 
 @t.test(20)
 def has_zoveelste_priem(test):
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "zoveelste_priem")
-    test.description = lambda : "definieert de functie zoveelse_priem()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "zoveelste_priem")
+	test.description = lambda : "definieert de functie zoveelse_priem()"
 
 @t.test(30)
 def exact1(test):
@@ -51,8 +51,8 @@ def exact377(test):
 @t.passed(has_priem_of_niet)
 @t.test(60)
 def handlesWrongInput(test):
-	test.test = lambda : assertlib.numberOnLine(2, lib.getLine(lib.outputOf(_fileName, stdinArgs=[-90, -1, 0, 1]), 0))
-	test.description = lambda : "handelt foute input af: -90, -1, 0"
+    test.test = lambda : assertlib.numberOnLine(2, lib.getLine(lib.outputOf(_fileName, stdinArgs=[-90, -1, 0, 1]), 0))
+    test.description = lambda : "handelt foute input af: -90, -1, 0"
 
 
 # # originele checks!

@@ -13,21 +13,21 @@ from notAllowedCode import *
 @t.test(0)
 def has_priem_of_niet(test):
 
-	notAllowed = {"list": "[", "break": "break"}
+	notAllowed = {"break": "break"}
 	notAllowedCode(test, lib.source(_fileName), notAllowed)
 
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "priem_of_niet")
-    test.description = lambda : "definieert de functie priem_of_niet()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "priem_of_niet")
+	test.description = lambda : "definieert de functie priem_of_niet()"
 
 @t.test(10)
 def has_alle_priems(test):
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "alle_priems")
-    test.description = lambda : "definieert de functie alle_priems()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "alle_priems")
+	test.description = lambda : "definieert de functie alle_priems()"
 
 @t.test(20)
 def has_reeks_niet_priem(test):
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "reeks_niet_priem")
-    test.description = lambda : "definieert de functie reeks_niet_priem()"
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "reeks_niet_priem")
+	test.description = lambda : "definieert de functie reeks_niet_priem()"
 
 @t.test(30)
 def correctBarriers(test):
