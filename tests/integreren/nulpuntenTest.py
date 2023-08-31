@@ -47,3 +47,9 @@ def correct(test):
 def correctNone(test):
     test.test = lambda : assertlib.exact(sorted(int(p * 10) for p in lib.getFunction("nulpunten", _fileName)(3,6,9)), [])
     test.description = lambda : "vindt geen nulpunten voor invoer a=3, b=6, c=9"
+
+@t.passed(hasNulpunten)
+@t.test(40)
+def correctNone(test):
+    test.test = lambda : assertlib.exact(sorted(int(p * 10) for p in lib.getFunction("nulpunten", _fileName)(2,4,2)), [-1])
+    test.description = lambda : "vindt het nulpunt voor invoer a=2, b=4, c=2"

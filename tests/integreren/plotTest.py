@@ -39,7 +39,7 @@ def showsGraph(test):
 
 @t.test(1)
 def givesMin(test):
-	notAllowed = {"min": "min"}
+	notAllowed = {"min(": "min("}
 	notAllowedCode(test, lib.source(_fileName), notAllowed)
 
 	test.test = lambda : assertlib.numberOnLine(0.37, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05) and assertlib.numberOnLine(0.69, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.05)

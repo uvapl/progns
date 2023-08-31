@@ -73,7 +73,7 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 
 	test.test = testMethod
 	test.fail = lambda info : "zorg dat de functie drie argumenten heeft, het aantal potjes, startgeld voor speler 1 en startgeld voor speler 2"
-	test.description = lambda : "definieert de functie simuleer_potje_monopoly en simuleer_groot_aanal_potjes_monopoly met drie argumenten"
+	test.description = lambda : "definieert de functie simuleer_potje_monopoly en simuleer_groot_aantal_potjes_monopoly met drie argumenten"
 	test.timeout = lambda : 90
 
 

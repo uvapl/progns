@@ -27,7 +27,7 @@ def allEvenNumbersInOutput(test):
 
 	test.test = testMethod
 
-	test.description = lambda : "alle even getallen tot 1000 staan in de output"
+	test.description = lambda : "alle even getallen (groter dan 2) tot en met 1000 staan in de output"
 
 @t.test(1)
 def allCalculationsCorrect(test):

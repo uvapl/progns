@@ -28,8 +28,8 @@ def after():
 
 @t.test(0)
 def hasSomRandomGetallen(test):
-    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "SomRandomGetallen")
-    test.description = lambda : "definieert de functie SomRandomGetallen"
+    test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "som_random_getallen")
+    test.description = lambda : "definieert de functie som_random_getallen"
 
 @t.passed(hasSomRandomGetallen)
 @t.test(10)
