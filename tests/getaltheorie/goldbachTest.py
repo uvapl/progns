@@ -29,6 +29,7 @@ def allEvenNumbersInOutput(test):
 
 	test.description = lambda : "alle even getallen (groter dan 2) tot en met 1000 staan in de output"
 
+@t.passed(allEvenNumbersInOutput)
 @t.test(1)
 def allCalculationsCorrect(test):
 	def testMethod():
@@ -44,6 +45,7 @@ def allCalculationsCorrect(test):
 
 	test.description = lambda : "de berekeningen op elke regel zijn correct"
 
+@t.passed(allEvenNumbersInOutput)
 @t.test(2)
 def allCalculationsContainTwoPrimes(test):
 	def testMethod():
