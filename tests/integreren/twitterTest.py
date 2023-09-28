@@ -28,6 +28,38 @@ def after():
 
 @t.test(0)
 def correctFunc1(test):
+	# v---- Filter global code from source file -----
+
+	global _originalFileName
+	global _fileName
+
+	_originalFileName = _fileName
+
+	with open(_fileName, 'r') as f:
+		tempfile = f"_{_fileName}.tmp"
+		file_contents = f.readlines()
+		
+	with open(tempfile, 'w') as f:
+		state = 0
+		for line in file_contents:
+			if state == 0:
+				if line.startswith('def '):
+					state = 1
+				f.write(line)
+			elif state == 1:
+				if not (line.strip() == '' or line.startswith(' ') or line.startswith("\t") or line.startswith("def ") or line.startswith("#")):
+					state = 2
+					continue
+				f.write(line)
+			elif state == 2:
+				if line.startswith('def '):
+					f.write(line)
+					state = 1
+
+	_fileName = tempfile
+
+	# ^---- Filter global code from source file -----
+
 	test.test = lambda : assertlib.between(lib.getFunction("twitter", _fileName)(), 0.82, 0.83)
 	test.description = lambda : "twitter geeft het juiste antwoord"
 	test.timeout = lambda : 90
