@@ -102,4 +102,5 @@ def correctFunc3(test):
 
 	test.test = testMethod
 	test.description = lambda : "montecarlo werkt correct voor een functie die onder de x-as komt"
+	test.fail = lambda info : "zorg dat deze check altijd akkoord geeft, dus gebruik checkpy meerdere keren"
 	test.timeout = lambda : 90
