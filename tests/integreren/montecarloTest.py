@@ -76,6 +76,7 @@ def correctFunc1(test):
 
 	test.test = testMethod
 	test.description = lambda : "montecarlo werkt correct voor een simpele functie"
+	test.fail = lambda info : "zorg dat deze check altijd akkoord geeft, dus gebruik checkpy meerdere keren"
 	test.timeout = lambda : 90
 
 @t.passed(hasMontecarlo)
@@ -89,6 +90,7 @@ def correctFunc2(test):
 
 	test.test = testMethod
 	test.description = lambda : "montecarlo werkt correct wanneer het beginpunt niet gelijk is aan 0"
+	test.fail = lambda info : "zorg dat deze check altijd akkoord geeft, dus gebruik checkpy meerdere keren"
 	test.timeout = lambda : 90
 
 @t.passed(hasMontecarlo)
