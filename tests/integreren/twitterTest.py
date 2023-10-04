@@ -13,7 +13,9 @@ def before():
 		matplotlib.use("Agg")
 		import matplotlib.pyplot as plt
 		plt.switch_backend("Agg")
+		lib.neutralizeFunction(matplotlib.use)
 		lib.neutralizeFunction(plt.pause)
+		lib.neutralizeFunction(plt.plot)
 	except ImportError:
 		pass
 
@@ -60,6 +62,13 @@ def correctFunc1(test):
 
 	# ^---- Filter global code from source file -----
 
-	test.test = lambda : assertlib.between(lib.getFunction("twitter", _fileName)(), 0.82, 0.83)
+	def testMethod():
+		import time
+		s = time.time()
+		res = assertlib.between(lib.getFunction("twitter", _fileName)(), 0.82, 0.83)
+		print(time.time() - s)
+		return res
+
+	test.test = testMethod
 	test.description = lambda : "twitter geeft het juiste antwoord"
 	test.timeout = lambda : 90

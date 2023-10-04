@@ -20,6 +20,7 @@ def before():
 		matplotlib.use("Agg")
 		import matplotlib.pyplot as plt
 		plt.switch_backend("Agg")
+		lib.neutralizeFunction(matplotlib.use)
 		lib.neutralizeFunction(plt.pause)
 	except ImportError:
 		pass
