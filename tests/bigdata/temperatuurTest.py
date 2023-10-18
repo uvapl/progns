@@ -96,7 +96,7 @@ def correctDateLowestTemp(test):
 	def testMethod():
 		correctYear = 1911
 
-		line = lib.getLine(lib.outputOf(_fileName), 4)
+		line = lib.getLine(lib.outputOf(_fileName), 3)
 		numbers = lib.getNumbersFromString(line)
 
 		check = correctYear in numbers
