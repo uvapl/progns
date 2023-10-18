@@ -6,8 +6,8 @@ import helpers
 import re
 
 def sandbox():
-	lib.require("DeBiltTempMaxSUMMER2019.txt", "https://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMaxSUMMER2019.txt")
-	lib.require("DeBiltTempMinSUMMER2019.txt", "https://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMinSUMMER2019.txt")
+	lib.require("DeBiltTempMaxSUMMER2023.txt", "https://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMaxSUMMER2023.txt")
+	lib.require("DeBiltTempMinSUMMER2023.txt", "https://www.nikhef.nl/~ivov/Python/KlimaatData/DeBiltTempMinSUMMER2023.txt")
 
 
 def before():
@@ -96,7 +96,7 @@ def correctDateLowestTemp(test):
 	def testMethod():
 		correctYear = 1911
 
-		line = lib.getLine(lib.outputOf(_fileName), 4)
+		line = lib.getLine(lib.outputOf(_fileName), 3)
 		numbers = lib.getNumbersFromString(line)
 
 		check = correctYear in numbers
