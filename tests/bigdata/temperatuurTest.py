@@ -5,10 +5,11 @@ import importlib
 import helpers
 import re
 
-def sandbox():
-	lib.require("DeBiltTempMaxSUMMER2023.txt", "https://raw.githubusercontent.com/spcourse/progns/2023/bigdata/data/DeBiltTempMaxSUMMER2023.txt")
-	lib.require("DeBiltTempMinSUMMER2023.txt", "https://raw.githubusercontent.com/spcourse/progns/2023/bigdata/data/DeBiltTempMinSUMMER2023.txt")
+from checkpy import *
 
+include("autorit.py")
+download("DeBiltTempMaxSUMMER2023.txt", "https://raw.githubusercontent.com/spcourse/progns/2023/bigdata/data/DeBiltTempMaxSUMMER2023.txt")
+download("DeBiltTempMinSUMMER2023.txt", "https://raw.githubusercontent.com/spcourse/progns/2023/bigdata/data/DeBiltTempMinSUMMER2023.txt")
 
 def before():
 	try:

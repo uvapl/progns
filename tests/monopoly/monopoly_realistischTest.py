@@ -83,15 +83,15 @@ def correctAverageDiv(test):
 	def testMethod():
 		outcome = lib.getFunction("simuleer_groot_aantal_potjes_monopoly", _fileName)(2000, 1500, 1500)
 		if assertlib.sameType(outcome, None):
-			info = "Zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
+			info = "zorg er voor dat de functie simuleer_groot_aantal_potjes_monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
 		elif assertlib.between(outcome, -99999999, 0):
-			info = "Als speler 1 meer straten heeft dan speler 2 is het verschil positief"
+			info = "als speler 1 meer straten heeft dan speler 2 is het verschil positief"
 		else:
-			info = "Het verschil is niet erg groot, gemiddeld zelfs minder dan 1 straat"
+			info = "het verschil is niet erg groot, gemiddeld zelfs minder dan 1 straat"
 		return assertlib.between(outcome, .15, .45), info
 
 	test.test = testMethod
-	test.description = lambda : "Monopoly met twee spelers geeft de het correcte gemiddelde verschil in gekochten straten"
+	test.description = lambda : "monopoly met twee spelers geeft het correcte gemiddelde verschil in gekochte straten"
 	test.timeout = lambda : 90
 
 
@@ -111,10 +111,10 @@ def correctAverageDiv2(test):
 
 		info = ""
 		if assertlib.numberOnLine(75, line):
-			info = "De gevonden waarde is 75 euro. Checkpy het programma nog een keer."
+			info = "de gevonden waarde is 75 euro--checkpy het programma nog een keer"
 
 		return assertlib.numberOnLine(125, line), info
 
 	test.test = testMethod
-	test.description = lambda : "Monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
+	test.description = lambda : "monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
 	test.timeout = lambda : 90

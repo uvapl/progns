@@ -3,8 +3,10 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import importlib
 
-def sandbox():
-	lib.require("AutoRitData.csv", "http://www.nikhef.nl/~ivov/Python/SensorData/AutoRitData.csv")
+from checkpy import *
+
+include("autorit.py")
+download("AutoRitData.csv", "http://www.nikhef.nl/~ivov/Python/SensorData/AutoRitData.csv")
 
 def before():
 	try:
