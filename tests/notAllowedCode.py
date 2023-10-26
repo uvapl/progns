@@ -14,6 +14,6 @@ def notAllowedCode(test, source, notAllowed):
 
 
     if len(abc) > 0:
-        warning = "Let op dat je geen " + ", ".join(abc) + " gebruikt"
+        warning = "let op dat je geen " + ", ".join(abc) + " gebruikt"
         test.fail = lambda info : warning
         test.success = lambda info : warning
