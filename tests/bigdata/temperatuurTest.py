@@ -55,8 +55,6 @@ def checkDatafile(test):
     with open(tempfile, 'w') as f:
         f.write(new_file_contents)
 
-    test.description = new_file_contents
-
     _fileName = tempfile
 
     return True
