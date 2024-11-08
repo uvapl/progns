@@ -107,7 +107,10 @@ def correctAverageDiv2(test):
 					return line
 			return ""
 
-		line = findline(lib.outputOf(_originalFileName))
+		line = findline(lib.outputOf(
+			_originalFileName,
+			overwriteAttributes=[("__name__", "__main__")])
+		)
 
 		info = ""
 		if assertlib.numberOnLine(75, line):
